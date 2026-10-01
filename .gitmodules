@@ -21,3 +21,6 @@
 [submodule "vendor/tree-sitter-grammars"]
 	path = vendor/tree-sitter-grammars
 	url = https://github.com/fujinoss/tree-sitter.git
+[submodule "engine/deps/zfuse"]
+	path = engine/deps/zfuse
+	url = https://github.com/fujinoss/zfuse.git
