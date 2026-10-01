@@ -1,23 +1,23 @@
 [submodule "tools/coreutils"]
-path = tools/coreutils
-url = https://github.com/fujinoss/coreutils.git
+	path = tools/coreutils
+	url = https://github.com/fujinoss/coreutils.git
 
 [submodule "tools/zish"]
-path = tools/zish
-url = https://github.com/fujinoss/zish.git
+	path = tools/zish
+	url = https://github.com/fujinoss/zish.git
 
 [submodule "tools/zmux"]
-path = tools/zmux
-url = https://github.com/fujinoss/zmux.git
+	path = tools/zmux
+	url = https://github.com/fujinoss/zmux.git
 
 [submodule "vendor/onetrueawk"]
-path = vendor/onetrueawk
-url = https://github.com/fujinoss/onetrueawk.git
+	path = vendor/onetrueawk
+	url = https://github.com/fujinoss/onetrueawk.git
 
 [submodule "vendor/keyboard"]
-path = vendor/keyboard
-url = https://github.com/fujinoss/keyboard.git
+	path = vendor/keyboard
+	url = https://github.com/fujinoss/keyboard.git
 
 [submodule "vendor/tree-sitter-grammars"]
-path = vendor/tree-sitter-grammars
-url = https://github.com/fujinoss/tree-sitter.git
+	path = vendor/tree-sitter-grammars
+	url = https://github.com/fujinoss/tree-sitter.git
