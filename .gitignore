@@ -1,0 +1,11 @@
+zig-cache/
+zig-out/
+.zig-cache/
+target/
+build/
+*.apk
+*.aab
+.gradle/
+local.properties
+.idea/
+*.iml

@@ -1,0 +1,15 @@
+[submodule "tools/coreutils"]
+	path = tools/coreutils
+	url = https://github.com/fujinoss/coreutils.git
+[submodule "tools/zish"]
+	path = tools/zish
+	url = https://github.com/fujinoss/zish.git
+[submodule "engine/deps/zmux"]
+	path = engine/deps/zmux
+	url = https://github.com/fujinoss/zmux.git
+[submodule "vendor/onetrueawk"]
+	path = vendor/onetrueawk
+	url = https://github.com/fujinoss/onetrueawk.git
+[submodule "vendor/tree-sitter-grammars"]
+	path = vendor/tree-sitter-grammars
+	url = https://github.com/fujinoss/tree-sitter-grammars.git
