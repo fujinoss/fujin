@@ -1,11 +1,43 @@
+# Zig
 zig-cache/
-zig-out/
 .zig-cache/
+zig-out/
+
+# Rust
 target/
-build/
-*.apk
-*.aab
+Cargo.lock
+
+# Gradle / Android
 .gradle/
 local.properties
+*.apk
+*.aab
+*.keystore
+*.jks
+fujin/fujin/build/
+fujin/.gradle/
+fujin/build/
+
+# IDE
 .idea/
 *.iml
+.vscode/
+*.swp
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+keystore.properties
+*.key
+*.pem
+
+# Submodule build output
+vendor/keyboard/build/
