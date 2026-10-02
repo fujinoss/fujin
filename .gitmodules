@@ -24,3 +24,6 @@
 [submodule "engine/deps/zfuse"]
 	path = engine/deps/zfuse
 	url = https://github.com/fujinoss/zfuse.git
+[submodule "vendor/flibc"]
+	path = vendor/flibc
+	url = https://github.com/fujinoss/flibc.git
