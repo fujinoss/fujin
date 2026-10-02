@@ -4,5 +4,4 @@
     <files-path name="import" path="home/import/" />
     <files-path name="export" path="home/export/" />
     <cache-path name="cache" path="." />
-    <external-files-path name="ext" path="." />
 </paths>
