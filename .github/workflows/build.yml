@@ -35,9 +35,14 @@ jobs:
           yes | $SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null
           $SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
-      - uses: mlugg/setup-zig@v1
-        with:
-          version: 0.16.0
+      - name: Setup Zig
+        run: |
+         cd /tmp
+         curl -sSLo zig.tar.xz https://ziglang.org/builds/zig-linux-x86_64-0.16.0-dev.1451+a2c0e31b2.tar.xz
+         tar xf zig.tar.xz
+         mv zig-linux-x86_64-* $HOME/zig
+         echo "$HOME/zig" >> $GITHUB_PATH
+         $HOME/zig/zig version
 
       - uses: dtolnay/rust-toolchain@stable
         with:
