@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fujin</string>
+    <string name="settings_title">Settings</string>
+    <string name="onboarding_title">Welcome to Fujin</string>
+
+    <string name="notification_channel_name">Sessions</string>
+    <string name="notification_channel_description">Keeps your terminal sessions running</string>
+    <string name="notification_title">Fujin</string>
+    <string name="notification_open">Open</string>
+    <string name="notification_new_tab">New tab</string>
+    <string name="notification_exit_all">Exit all</string>
+
+    <string name="tab_new">New tab</string>
+    <string name="tab_close">Close tab</string>
+    <string name="tab_rename">Rename</string>
+    <string name="tab_dead">Session ended</string>
+
+    <string name="search_hint">Search</string>
+    <string name="search_prev">Previous match</string>
+    <string name="search_next">Next match</string>
+    <string name="search_close">Close search</string>
+
+    <string name="action_copy">Copy</string>
+    <string name="action_paste">Paste</string>
+    <string name="action_select_all">Select all</string>
+    <string name="action_share">Share</string>
+    <string name="action_open_url">Open link</string>
+
+    <string name="onboarding_continue">Continue</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_finish">Get started</string>
+
+    <string name="exit_dialog_title">Exit all sessions?</string>
+    <string name="exit_dialog_message">This will close all running sessions and stop the service.</string>
+    <string name="exit_dialog_confirm">Exit all</string>
+    <string name="exit_dialog_cancel">Cancel</string>
+</resources>
