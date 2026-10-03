@@ -5,9 +5,6 @@ pub enum ArashiError {
     #[error("Vulkan loader not found")]
     LoaderNotFound,
 
-    #[error("Vulkan entry point '{0}' failed to load")]
-    EntryLoad(&'static str),
-
     #[error("Vulkan instance creation failed: {0:?}")]
     InstanceCreation(ash::vk::Result),
 
@@ -17,11 +14,11 @@ pub enum ArashiError {
     #[error("Vulkan layer missing: {0}")]
     MissingLayer(String),
 
-    #[error("No suitable physical device found")]
-    NoPhysicalDevice,
-
     #[error("Physical device enumeration failed: {0:?}")]
     PhysicalDeviceEnum(ash::vk::Result),
+
+    #[error("No suitable physical device found")]
+    NoPhysicalDevice,
 
     #[error("No suitable queue family")]
     NoQueueFamily,
@@ -139,3 +136,33 @@ pub enum ArashiError {
 }
 
 pub type Result<T> = std::result::Result<T, ArashiError>;
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_error_display() {
+        let e = ArashiError::NoPhysicalDevice;
+        assert_eq!(e.to_string(), "No suitable physical device found");
+    }
+
+    #[test]
+    fn test_error_from_io() {
+        let io_err = std::io::Error::new(std::io::ErrorKind::NotFound, "test");
+        let e: ArashiError = io_err.into();
+        assert!(matches!(e, ArashiError::Io(_)));
+    }
+
+    #[test]
+    fn test_result_alias() {
+        fn returns_ok() -> Result<i32> {
+            Ok(42)
+        }
+        fn returns_err() -> Result<i32> {
+            Err(ArashiError::NotInitialized)
+        }
+        assert_eq!(returns_ok().unwrap(), 42);
+        assert!(returns_err().is_err());
+    }
+}
