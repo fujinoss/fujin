@@ -1698,4 +1698,3 @@ mod tests {
         state.shutdown();
     }
 }
-    fn ring_buffer_
