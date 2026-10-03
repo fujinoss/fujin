@@ -3,12 +3,21 @@ name = "arashi"
 version = "0.95.0"
 edition = "2021"
 license = "MIT"
+authors = ["fujinoss"]
 
 [lib]
 name = "arashi"
-crate-type = ["staticlib"]
+crate-type = ["staticlib", "rlib"]
 
 [dependencies]
+ash = "0.38"
+ash-window = "0.13"
+raw-window-handle = "0.6"
+bytemuck = { version = "1.14", features = ["derive"] }
+gpu-allocator = "0.26"
+log = "0.4"
+once_cell = "1.19"
+thiserror = "1.0"
 
 [profile.release]
 opt-level = 3
