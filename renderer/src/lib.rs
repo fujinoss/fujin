@@ -1,30 +1,22 @@
-//! arashi — the GPU renderer for Fujin.
+//! arashi — GPU renderer for Fujin.
 //!
-//! Vulkan primary, GLES fallback. Exposes 7 functions through a C ABI.
-//! Called from the Zig engine, which is called from Android via JNI.
+//! Vulkan primary, GLES fallback. C ABI on top, called from the Zig engine.
 
-use core::ffi::c_void;
+pub mod color;
+pub mod util;
 
-#[repr(C)]
-#[derive(Clone, Copy)]
-pub struct ArashiCell {
-    pub x: u16,
-    pub y: u16,
-    pub atlas_u: u16,
-    pub atlas_v: u16,
-    pub fg: u32,
-    pub bg: u32,
-    pub flags: u8,
-    pub _pad: [u8; 3],
-}
+pub use color::{Color, Palette};
+pub use util::{ArashiError, FrameTimer, Result};
+
+use std::ffi::c_void;
 
 #[no_mangle]
 pub extern "C" fn arashi_init(
-    window: *mut c_void,
-    width: u32,
-    height: u32,
+    _window: *mut c_void,
+    _width: u32,
+    _height: u32,
 ) -> i32 {
-    let _ = (window, width, height);
+    util::log::init();
     0
 }
 
@@ -32,36 +24,30 @@ pub extern "C" fn arashi_init(
 pub extern "C" fn arashi_shutdown() {}
 
 #[no_mangle]
-pub extern "C" fn arashi_resize(width: u32, height: u32) {
-    let _ = (width, height);
-}
+pub extern "C" fn arashi_resize(_width: u32, _height: u32) {}
 
 #[no_mangle]
 pub extern "C" fn arashi_upload_atlas(
-    data: *const u8,
-    len: usize,
-    atlas_w: u32,
-    atlas_h: u32,
-    format: u32,
+    _data: *const u8,
+    _len: usize,
+    _atlas_w: u32,
+    _atlas_h: u32,
+    _format: u32,
 ) {
-    let _ = (data, len, atlas_w, atlas_h, format);
 }
 
 #[no_mangle]
-pub extern "C" fn arashi_begin_frame(clear_color: u32) {
-    let _ = clear_color;
-}
+pub extern "C" fn arashi_begin_frame(_clear_color: u32) {}
 
 #[no_mangle]
 pub extern "C" fn arashi_push_cells(
-    cells: *const ArashiCell,
-    count: usize,
-    cols: u32,
-    rows: u32,
-    cell_w: f32,
-    cell_h: f32,
+    _cells: *const u8,
+    _count: usize,
+    _cols: u32,
+    _rows: u32,
+    _cell_w: f32,
+    _cell_h: f32,
 ) {
-    let _ = (cells, count, cols, rows, cell_w, cell_h);
 }
 
 #[no_mangle]
