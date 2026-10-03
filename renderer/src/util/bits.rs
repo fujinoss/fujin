@@ -55,38 +55,89 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_is_power_of_two() {
-        assert!(is_power_of_two(1));
-        assert!(is_power_of_two(2));
-        assert!(is_power_of_two(1024));
-        assert!(!is_power_of_two(0));
-        assert!(!is_power_of_two(3));
-        assert!(!is_power_of_two(1023));
+    fn test_is_power_of_two_true_cases() {
+        for n in [1u32, 2, 4, 8, 16, 32, 64, 128, 256, 1024, 1 << 20] {
+            assert!(is_power_of_two(n), "{n} should be power of two");
+        }
     }
 
     #[test]
-    fn test_round_up_to_pow2() {
-        assert_eq!(round_up_to_pow2(5, 4), 8);
-        assert_eq!(round_up_to_pow2(8, 8), 8);
-        assert_eq!(round_up_to_pow2(9, 8), 16);
-        assert_eq!(round_up_to_pow2(1, 16), 16);
+    fn test_is_power_of_two_false_cases() {
+        for n in [0u32, 3, 5, 6, 7, 9, 15, 17, 100, 1023] {
+            assert!(!is_power_of_two(n), "{n} should not be power of two");
+        }
     }
 
     #[test]
-    fn test_round_down_to_pow2() {
-        assert_eq!(round_down_to_pow2(5, 4), 4);
-        assert_eq!(round_down_to_pow2(8, 8), 8);
-        assert_eq!(round_down_to_pow2(9, 8), 8);
-        assert_eq!(round_down_to_pow2(15, 16), 0);
+    fn test_round_up_to_pow2_all_alignments() {
+        for align in [1u32, 2, 4, 8, 16, 32, 64] {
+            for n in 0..(align * 4) {
+                let r = round_up_to_pow2(n, align);
+                assert!(r >= n);
+                assert!(r % align == 0);
+                assert!(r - n < align);
+            }
+        }
     }
 
     #[test]
-    fn test_next_power_of_two() {
+    fn test_round_down_to_pow2_all_alignments() {
+        for align in [1u32, 2, 4, 8, 16, 32, 64] {
+            for n in 0..(align * 4) {
+                let r = round_down_to_pow2(n, align);
+                assert!(r <= n);
+                assert!(r % align == 0);
+                assert!(n - r < align);
+            }
+        }
+    }
+
+    #[test]
+    fn test_next_power_of_two_sequence() {
         assert_eq!(next_power_of_two(0), 1);
         assert_eq!(next_power_of_two(1), 1);
         assert_eq!(next_power_of_two(2), 2);
         assert_eq!(next_power_of_two(3), 4);
+        assert_eq!(next_power_of_two(4), 4);
         assert_eq!(next_power_of_two(5), 8);
+        assert_eq!(next_power_of_two(7), 8);
+        assert_eq!(next_power_of_two(8), 8);
+        assert_eq!(next_power_of_two(9), 16);
         assert_eq!(next_power_of_two(17), 32);
+        assert_eq!(next_power_of_two(1000), 1024);
+    }
+
+    #[test]
+    fn test_popcount() {
+        assert_eq!(popcount(0), 0);
+        assert_eq!(popcount(1), 1);
+        assert_eq!(popcount(0b1111), 4);
+        assert_eq!(popcount(u64::MAX), 64);
+        assert_eq!(popcount(0xAAAA_AAAA_AAAA_AAAA), 32);
+    }
+
+    #[test]
+    fn test_leading_zeros() {
+        assert_eq!(leading_zeros(1), 63);
+        assert_eq!(leading_zeros(0x8000_0000_0000_0000), 0);
+        assert_eq!(leading_zeros(0), 64);
+    }
+
+    #[test]
+    fn test_trailing_zeros() {
+        assert_eq!(trailing_zeros(1), 0);
+        assert_eq!(trailing_zeros(2), 1);
+        assert_eq!(trailing_zeros(8), 3);
+        assert_eq!(trailing_zeros(0), 64);
+    }
+
+    #[test]
+    fn test_align_up_u64() {
+        assert_eq!(align_up_u64(0, 4), 0);
+        assert_eq!(align_up_u64(1, 4), 4);
+        assert_eq!(align_up_u64(4, 4), 4);
+        assert_eq!(align_up_u64(5, 4), 8);
+        assert_eq!(align_up_u64(1024, 256), 1024);
+        assert_eq!(align_up_u64(1025, 256), 1280);
     }
 }
